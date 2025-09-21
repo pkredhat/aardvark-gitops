@@ -9,20 +9,16 @@ spec:
     server: https://kubernetes.default.svc
     namespace: aardvark-prod
   source:
-    repoURL: https://github.com/your-org/aardvark-gitops.git
+    repoURL: https://github.com/pkredhat/aardvark-gitops
     targetRevision: master
-    path: helm/app
+    path: .
     helm:
       valueFiles:
-        - ../../envs/prod/values.yaml
+        - helm/app/values.yaml
+        - envs/prod/values.yaml
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
-
-
-
-
