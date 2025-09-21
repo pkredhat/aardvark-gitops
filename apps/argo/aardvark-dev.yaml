@@ -17,7 +17,7 @@ spec:
     helm:      
       valueFiles:
         - values.yaml
-        - ../../envs/dev/values.yaml
+        - envs/dev/values.yaml
   syncPolicy:
     automated:
       prune: true
