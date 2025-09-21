@@ -3,23 +3,24 @@ kind: Application
 metadata:
   name: aardvark-dev
   namespace: openshift-gitops
+  labels:
+    rht-gitops.com/janus-argocd: aardvark-apps
 spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
     namespace: aardvark-dev
   source:
-    repoURL: https://github.com/your-org/aardvark-gitops.git
-    targetRevision: HEAD
-    path: helm/app
+    repoURL: https://github.com/pkredhat/aardvark-gitops
+    targetRevision: main
+    path: .
     helm:
       valueFiles:
-        - ../../envs/dev/values.yaml
+        - helm/app/values.yaml
+        - envs/dev/values.yaml
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
-
