@@ -1,5 +1,5 @@
 replicaCount: 1
 image:
-  tag: "dev"
+  tag: "latest"
 route:
   host: aardvark-dev.example.com
