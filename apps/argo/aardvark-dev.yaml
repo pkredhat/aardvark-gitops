@@ -12,7 +12,7 @@ spec:
     namespace: aardvark-dev
   source:
     repoURL: https://github.com/pkredhat/aardvark-gitops
-    targetRevision: main
+    targetRevision: master
     path: .
     helm:
       valueFiles:
@@ -24,3 +24,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
+
+
+

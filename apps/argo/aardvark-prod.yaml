@@ -10,7 +10,7 @@ spec:
     namespace: aardvark-prod
   source:
     repoURL: https://github.com/your-org/aardvark-gitops.git
-    targetRevision: HEAD
+    targetRevision: master
     path: helm/app
     helm:
       valueFiles:
@@ -21,4 +21,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
+
+
+
 
