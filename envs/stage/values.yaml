@@ -2,4 +2,15 @@ replicaCount: 2
 image:
   tag: "stage"
 route:
-  host: aardvark-stage.example.com
+  host: "qa"
+postgres:
+  enabled: true
+  image: docker.io/library/postgres:16-alpine
+  port: 5432
+  storage:
+    enabled: false
+    size: 1Gi
+  auth:
+    user: postgres
+    password: postgres
+    database: inventory
