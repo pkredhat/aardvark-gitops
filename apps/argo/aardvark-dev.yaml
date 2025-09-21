@@ -15,6 +15,7 @@ spec:
     targetRevision: master
     path: .
     helm:
+      chart: helm/app
       valueFiles:
         - helm/app/values.yaml
         - envs/dev/values.yaml
