@@ -11,12 +11,11 @@ spec:
   source:
     repoURL: https://github.com/pkredhat/aardvark-gitops
     targetRevision: master
-    path: .
+    path: helm/app
     helm:
-      chart: helm/app
       valueFiles:
-        - helm/app/values.yaml
-        - envs/qa/values.yaml
+        - values.yaml
+        - ../../envs/dev/values.yaml
   syncPolicy:
     automated:
       prune: true
