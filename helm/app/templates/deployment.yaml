@@ -24,3 +24,15 @@ spec:
           ports:
             - containerPort: 8000
               name: http
+          env:
+            {{- if .Values.postgres.enabled }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.auth.user | quote }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.auth.password | quote }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.auth.database | quote }}
+            - name: DATABASE_URL
+              value: postgresql://{{ .Values.postgres.auth.user }}:{{ .Values.postgres.auth.password }}@postgres:{{ .Values.postgres.port | default 5432 }}/{{ .Values.postgres.auth.database }}
+            {{- end }}
+
