@@ -1,8 +1,8 @@
 app:
   name: aardvark
 image:
-  repository: quay.io/your-org/aardvark
-  tag: "1.0.0"
+  repository: https://quay-67h8m.apps.cluster-67h8m.67h8m.sandbox698.opentlc.com/pkredhat/aardvark
+  tag: "latest"
   pullPolicy: IfNotPresent
 replicaCount: 1
 service:
