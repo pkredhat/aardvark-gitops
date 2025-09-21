@@ -14,9 +14,10 @@ spec:
     repoURL: https://github.com/pkredhat/aardvark-gitops
     targetRevision: master
     path: .
-    helm:      
+    helm:
+      chart: helm/app
       valueFiles:
-        - values.yaml
+        - helm/app/values.yaml
         - envs/dev/values.yaml
   syncPolicy:
     automated:
