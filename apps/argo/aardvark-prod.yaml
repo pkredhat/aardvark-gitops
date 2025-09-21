@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aardvark-prod
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: aardvark-prod
+  source:
+    repoURL: https://github.com/your-org/aardvark-gitops.git
+    targetRevision: HEAD
+    path: helm/app
+    helm:
+      valueFiles:
+        - ../../envs/prod/values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

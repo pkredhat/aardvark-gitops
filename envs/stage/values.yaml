@@ -1,0 +1,5 @@
+replicaCount: 2
+image:
+  tag: "stage"
+route:
+  host: aardvark-stage.example.com

@@ -1,0 +1,5 @@
+replicaCount: 3
+image:
+  tag: "1.0.0"
+route:
+  host: aardvark.example.com

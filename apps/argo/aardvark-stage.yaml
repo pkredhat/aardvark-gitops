@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aardvark-stage
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: aardvark-stage
+  source:
+    repoURL: https://github.com/your-org/aardvark-gitops.git
+    targetRevision: HEAD
+    path: helm/app
+    helm:
+      valueFiles:
+        - ../../envs/stage/values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

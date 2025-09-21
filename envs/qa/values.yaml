@@ -1,0 +1,5 @@
+replicaCount: 1
+image:
+  tag: "qa"
+route:
+  host: aardvark-qa.example.com
