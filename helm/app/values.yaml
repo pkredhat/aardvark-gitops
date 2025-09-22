@@ -5,6 +5,9 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 replicaCount: 1
+appConfig:
+  databaseConnectRetries: 0
+  databaseConnectBackoff: 3
 service:
   type: ClusterIP
   port: 80
@@ -26,7 +29,7 @@ postgres:
     enabled: false
     size: 1Gi
   auth:
-    user: postgres
-    password: postgres
+    user: aardvark
+    password: aardvark
     database: inventory
   securityContext: {}

@@ -35,4 +35,7 @@ spec:
             - name: DATABASE_URL
               value: postgresql://{{ .Values.postgres.auth.user }}:{{ .Values.postgres.auth.password }}@postgres:{{ .Values.postgres.port | default 5432 }}/{{ .Values.postgres.auth.database }}
             {{- end }}
-
+            - name: DATABASE_CONNECT_RETRIES
+              value: {{ .Values.appConfig.databaseConnectRetries | quote }}
+            - name: DATABASE_CONNECT_BACKOFF
+              value: {{ .Values.appConfig.databaseConnectBackoff | quote }}

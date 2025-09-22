@@ -11,6 +11,6 @@ postgres:
     enabled: false
     size: 1Gi
   auth:
-    user: postgres
-    password: postgres
+    user: aardvark
+    password: aardvark
     database: inventory
