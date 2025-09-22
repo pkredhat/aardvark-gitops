@@ -6,6 +6,7 @@ image:
   pullPolicy: IfNotPresent
 replicaCount: 1
 appConfig:
+  containerPort: 5000
   databaseConnectRetries: 0
   databaseConnectBackoff: 3
 service:
