@@ -5,7 +5,7 @@ route:
   host: "qa"
 postgres:
   enabled: true
-  image: registry.redhat.io/rhel9/postgresql-16:1-71
+  image: quay.io/sclorg/postgresql-16-c9s:latest
   port: 5432
   storage:
     enabled: false
