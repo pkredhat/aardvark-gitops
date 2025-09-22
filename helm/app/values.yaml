@@ -29,5 +29,4 @@ postgres:
     user: postgres
     password: postgres
     database: inventory
-  securityContext:
-    fsGroup: 26
+  securityContext: {}
