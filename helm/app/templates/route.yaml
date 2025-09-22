@@ -10,4 +10,22 @@ spec:
   port:
     targetPort: http
   host: {{ .Values.route.host | quote }}
+  {{- with .Values.route.tls }}
+  {{- if .enabled }}
+  tls:
+    termination: {{ .termination | default "edge" }}
+    {{- if .insecureEdgeTerminationPolicy }}
+    insecureEdgeTerminationPolicy: {{ .insecureEdgeTerminationPolicy }}
+    {{- end }}
+    {{- if .certificate }}
+    certificate: {{ .certificate | quote }}
+    {{- end }}
+    {{- if .key }}
+    key: {{ .key | quote }}
+    {{- end }}
+    {{- if .caCertificate }}
+    caCertificate: {{ .caCertificate | quote }}
+    {{- end }}
+  {{- end }}
+  {{- end }}
 {{- end }}

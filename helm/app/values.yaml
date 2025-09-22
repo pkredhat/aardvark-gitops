@@ -15,6 +15,13 @@ service:
 route:
   enabled: true
   host: ""
+  tls:
+    enabled: true
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+    certificate: ""
+    key: ""
+    caCertificate: ""
 resources: {}
 
 postgres:
