@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   tag: "latest"
 route:
-  host: "aardvark-dev.apps.cluster-67h8m.67h8m.sandbox698.opentlc.com"
+  host: ""
 postgres:
   enabled: true
   image: quay.io/sclorg/postgresql-16-c9s:latest
