@@ -1,4 +1,5 @@
 {{- if .Values.postgres.enabled }}
+{{- $pg := .Values.postgres }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,26 +19,30 @@ spec:
         app.kubernetes.io/name: postgres
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      {{- with $pg.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: postgres
-          image: {{ .Values.postgres.image | quote }}
+          image: {{ $pg.image | quote }}
           imagePullPolicy: IfNotPresent
           ports:
             - name: pg
-              containerPort: {{ .Values.postgres.port | default 5432 }}
+              containerPort: {{ $pg.port | default 5432 }}
           env:
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.auth.user | quote }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.auth.password | quote }}
-            - name: POSTGRES_DB
-              value: {{ .Values.postgres.auth.database | quote }}
+            - name: {{ default "POSTGRESQL_USER" $pg.envVarNames.user }}
+              value: {{ $pg.auth.user | quote }}
+            - name: {{ default "POSTGRESQL_PASSWORD" $pg.envVarNames.password }}
+              value: {{ $pg.auth.password | quote }}
+            - name: {{ default "POSTGRESQL_DATABASE" $pg.envVarNames.database }}
+              value: {{ $pg.auth.database | quote }}
           volumeMounts:
             - name: pgdata
-              mountPath: /var/lib/postgresql/data
+              mountPath: {{ default "/var/lib/postgresql/data" $pg.dataDir | quote }}
       volumes:
         - name: pgdata
-{{- if .Values.postgres.storage.enabled }}
+{{- if $pg.storage.enabled }}
           persistentVolumeClaim:
             claimName: postgres-data
 {{- else }}
